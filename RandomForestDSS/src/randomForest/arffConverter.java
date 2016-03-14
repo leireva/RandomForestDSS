@@ -45,8 +45,10 @@ public  void main()throws Exception{
 					//String data;
 					/*data=atazak[3].substring(26, atazak[3].length())+" "+atazak[3].substring(11,19);*/
 					//bw.write(atazak[1]+",'"+atazak[4].replace("'", "�")+"'\n");
-					
-					bw.write("'"+atazak[4].replace("'", "�")+"',"+atazak[1]+"\n");
+					String myString = "'"+atazak[4].replace("'", "�")+"',"+atazak[1]+"\n";
+					byte ptext[] = myString.getBytes();
+					String value = new String(ptext, "UTF-8");
+					bw.write(value);
 					bw.flush();}
 			}
 			}//while
