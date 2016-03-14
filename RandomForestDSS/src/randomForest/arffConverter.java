@@ -1,4 +1,5 @@
-package aRFFmaker;
+package randomForest;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,7 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class ARFFmaker {
+public class arffConverter {
 
 	
 public static void main(String[] args)throws Exception{
@@ -53,3 +54,4 @@ public static void main(String[] args)throws Exception{
 	
 
 }
+
