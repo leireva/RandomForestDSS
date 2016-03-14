@@ -29,10 +29,11 @@ public  void main()throws Exception{
 		
 		bw.write("@RELATION tweetSentiment.dev.csv\n\n");
 		//bw.write("@ATTRIBUTE Topic  string \n");
-		bw.write("@ATTRIBUTE CLASS {neutral,positive,negative}\n");
+		
 		//bw.write("@ATTRIBUTE ID NUMERIC \n");
 		//bw.write("@ATTRIBUTE timestamp DATE  \"HH:mm:ss\" \n");
 		bw.write("@ATTRIBUTE Text string \n\n");
+		bw.write("@ATTRIBUTE CLASS {neutral,positive,negative}\n");
 		bw.write("@DATA\n");
 		String lerroa=br.readLine();
 		while ((lerroa=br.readLine())!=null){
@@ -43,7 +44,9 @@ public  void main()throws Exception{
 					if(!atazak[1].equalsIgnoreCase("irrelevant")){
 					//String data;
 					/*data=atazak[3].substring(26, atazak[3].length())+" "+atazak[3].substring(11,19);*/
-					bw.write(atazak[1]+",'"+atazak[4].replace("'", "�")+"'\n");
+					//bw.write(atazak[1]+",'"+atazak[4].replace("'", "�")+"'\n");
+					
+					bw.write("'"+atazak[4].replace("'", "�")+"',"+atazak[1]+"\n");
 					bw.flush();}
 			}
 			}//while
