@@ -12,26 +12,27 @@ public class arffConverter {
 	public arffConverter(){}
 	
 	
-public  void main()throws Exception{
+public  void main(String path)throws Exception{
 		
-		String helbidea;
-		File f = new File("train.arff");
+		//String helbidea;
+		String user = System.getProperty("user.name");
+		File f = new File("/home/"+user+"/train.arff");
+		System.out.println("====================");
+		System.out.println("Zure fitxategia hemen eratuko da : /home/"+user+"/train.arff");
 		if (!f.exists())
 			f.createNewFile();
 		else
 			f.delete();
 		
-		helbidea= "/home/bingen/train.csv";
+		//helbidea= "/home/bingen/train.csv";
+		//fitxategia eratzeko pausuak
 		FileWriter fw = new FileWriter(f);
 		BufferedWriter bw = new BufferedWriter(fw);
-		FileReader fr=new FileReader(helbidea);
+		FileReader fr=new FileReader(path);
 		BufferedReader br = new BufferedReader(fr);
 		
+		//.arff fitxategi baten goiburua
 		bw.write("@RELATION tweetSentiment.dev.csv\n\n");
-		//bw.write("@ATTRIBUTE Topic  string \n");
-		
-		//bw.write("@ATTRIBUTE ID NUMERIC \n");
-		//bw.write("@ATTRIBUTE timestamp DATE  \"HH:mm:ss\" \n");
 		bw.write("@ATTRIBUTE Text string \n\n");
 		bw.write("@ATTRIBUTE CLASS {neutral,positive,negative}\n");
 		bw.write("@DATA\n");
@@ -52,7 +53,7 @@ public  void main()throws Exception{
 					bw.flush();}
 			}
 			}//while
-		System.out.println("Eginda");
+		System.out.println("Eginda ;)");
 			bw.close();
 			br.close();
 		 }
