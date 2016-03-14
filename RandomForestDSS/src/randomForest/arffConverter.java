@@ -9,8 +9,10 @@ import java.io.FileWriter;
 
 public class arffConverter {
 
+	public arffConverter(){}
 	
-public static void main(String[] args)throws Exception{
+	
+public  void main()throws Exception{
 		
 		String helbidea;
 		File f = new File("train.arff");
