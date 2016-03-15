@@ -1,4 +1,4 @@
-package readerARFF;
+package mngmnt;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
