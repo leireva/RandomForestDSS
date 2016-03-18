@@ -3,7 +3,11 @@ package randomForest;
 public class Nagusia {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		if( args.length < 1 ){
+			System.out.println("ARGUMENTOS:");
+			System.out.println("Ez duzu path -ik idatzi!!!!");
+			return; 
+		}
 
 		arffConverter proba = new arffConverter();
 		try {
