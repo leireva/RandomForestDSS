@@ -27,7 +27,7 @@ public class StringToWordVFilter {
 				stwv.setWordsToKeep(2000);
 	}
 
-	public void applyFilter(){
+	public void applyFilter(int tr, int dev, int test){
 		Instances filteredData = null;
 		setOptions();
 		//filtroa aplikatu
@@ -40,7 +40,7 @@ public class StringToWordVFilter {
 			//e.printStackTrace();
 		}
 	}
-	private void writeFile(Instances filteredData){
+	public void writeTrainFile(Instances filteredData){
 		String user = System.getProperty("user.name");
 		BufferedWriter writer;
 		try {
@@ -58,4 +58,49 @@ public class StringToWordVFilter {
 			e.printStackTrace();
 		}
 	}
+	public void writeDevFile(Instances filteredData){
+		String user = System.getProperty("user.name");
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter(
+			                           new FileWriter("/home/"+user+"/devBOW.arff"));
+			writer.write(filteredData.toString());
+			 writer.newLine();
+			 writer.flush();
+			 writer.close();
+			 System.out.println("File name: devBOW.arff");
+			 System.out.println("File succesfully saved at /home/"+user+"/");
+			 System.out.println("_____________________________________________");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void writeTestFile(Instances filteredData){
+		String user = System.getProperty("user.name");
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter(
+			                           new FileWriter("/home/"+user+"/testBOW.arff"));
+			writer.write(filteredData.toString());
+			 writer.newLine();
+			 writer.flush();
+			 writer.close();
+			 System.out.println("File name: testBOW.arff");
+			 System.out.println("File succesfully saved at /home/"+user+"/");
+			 System.out.println("_____________________________________________");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public Instances getInst(int index){
+		Instances newData = 
+		for(int i = 0; i<=index; i++){
+			newData.add(data.instance(i));
+		}
+		return newData;
+	}
+	
+	
 }
