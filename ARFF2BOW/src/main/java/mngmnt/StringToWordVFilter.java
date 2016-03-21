@@ -12,6 +12,7 @@ public class StringToWordVFilter {
 	
 	private StringToWordVector stwv;
 	Instances data;
+	Instances filteredData;
 	
 	public StringToWordVFilter(Instances pdata){
 		stwv = new StringToWordVector();
@@ -27,18 +28,46 @@ public class StringToWordVFilter {
 				stwv.setWordsToKeep(2000);
 	}
 
-	public void applyFilter(int tr, int dev, int test){
-		Instances filteredData = null;
+	public void applyFilter(){
 		setOptions();
 		//filtroa aplikatu
 		try {
 			stwv.setInputFormat(data);
 			filteredData = Filter.useFilter(data, stwv);
-			writeFile(filteredData);
+			//writeFiles(tr, dev, test);
+			write();
 		} catch (Exception e) {
 			System.out.println("ERROR! couldn't filter DATA :(");
 			//e.printStackTrace();
 		}
+	}
+	public void write(){
+		String user = System.getProperty("user.name");
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter(
+			                           new FileWriter("/home/"+user+"/allBOW.arff"));
+			writer.write(filteredData.toString());
+			 writer.newLine();
+			 writer.flush();
+			 writer.close();
+			 System.out.println("File name: allBOW.arff");
+			 System.out.println("File succesfully saved at /home/"+user+"/");
+			 System.out.println("_____________________________________________");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void writeFiles(int tr, int dev, int test){
+		Instances train = getInst(0, tr);
+		writeTrainFile(train);
+		
+		Instances devI = getInst(tr,tr+dev);
+		writeDevFile(devI);
+		
+		Instances testI = getInst(tr+dev, dev+test);
+		writeTestFile(testI);
 	}
 	public void writeTrainFile(Instances filteredData){
 		String user = System.getProperty("user.name");
@@ -94,10 +123,11 @@ public class StringToWordVFilter {
 			e.printStackTrace();
 		}
 	}
-	public Instances getInst(int index){
-		Instances newData = 
-		for(int i = 0; i<=index; i++){
-			newData.add(data.instance(i));
+
+	public Instances getInst(int indexB,int indexE){
+		Instances newData = null;
+		for(int i = indexB; i<indexE; i++){
+			newData.add(filteredData.instance(i));
 		}
 		return newData;
 	}

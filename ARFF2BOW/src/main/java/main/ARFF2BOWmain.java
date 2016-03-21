@@ -21,25 +21,35 @@ public class ARFF2BOWmain {
 			System.out.println("\t1. Path del fichero de entrada: datos en formato .arff");
 			return; 
 		}
+		if ( args.length < 3){
+			System.out.println("Hiru fitxategi sartu behar dira, eskerrik asko :)");
+		}
 		//train instances irakurri
 		ARFFreader reader1 = new ARFFreader(args[0]);
 		Instances dataT = reader1.readFile();
+		//int trainIndex = dataT.numInstances();
 		
 		//dev instances irakurri
 		ARFFreader reader2 = new ARFFreader(args[1]);
 		Instances dataDev = reader2.readFile();
+		//int devIndex = dataDev.numInstances();
 		
 		//test instances irakurri
 		ARFFreader reader3 = new ARFFreader(args[2]);
 		Instances dataTest = reader3.readFile();
-		
+		//int testIndex = dataTest.numInstances();
 		//data.setClassIndex(data.numAttributes()-1);
-		Instances mainData = null;
+		
+		//Instances mergedINST = Instances.mergeInstances(dataT, dataDev);
+		//Instances mainData = Instances.mergeInstances(mergedINST, dataTest);
 		InstancesMNGMNT manager = new InstancesMNGMNT(dataT, dataDev, dataTest);
-		mainData = manager.addToMainInstances();
+		manager.addToMainInstances();
+		
+		//manager.writeALLARFF(mainData);
 		//filtroa aplikatu
-		StringToWordVFilter st = new StringToWordVFilter(mainData);
-		st.applyFilter(manager.getTrainNum(),manager.getDevNum(),manager.getTestNum());
+		StringToWordVFilter st = new StringToWordVFilter(manager.getMainInstances());
+		st.applyFilter();
+		//st.applyFilter(manager.getTrainNum(),manager.getDevNum(),manager.getTestNum());
 		
 	}
 
