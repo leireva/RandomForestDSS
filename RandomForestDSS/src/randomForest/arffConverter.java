@@ -36,7 +36,7 @@ public  void main(String path)throws Exception{
 		//.arff fitxategi baten goiburua
 		bw.write("@RELATION "+fName+".csv\n\n");
 		bw.write("@ATTRIBUTE Text string \n\n");
-		bw.write("@ATTRIBUTE CLASS {neutral,irrelevant,positive,negative}\n");
+		bw.write("@ATTRIBUTE CLASS {irrelevant,neutral,positive,negative}\n");
 		bw.write("@DATA\n");
 		String lerroa=br.readLine();
 		while ((lerroa=br.readLine())!=null){

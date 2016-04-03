@@ -24,8 +24,9 @@ public class StringToWordVFilter {
 				stwv.setTFTransform(false);
 				stwv.setAttributeIndices("1");
 				stwv.setLowerCaseTokens(true);
-				stwv.setOutputWordCounts(true);
-				stwv.setWordsToKeep(2000);
+				stwv.setOutputWordCounts(false);
+				stwv.setWordsToKeep(10);
+			
 	}
 
 	public void applyFilter(){
