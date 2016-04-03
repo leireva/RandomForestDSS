@@ -27,17 +27,17 @@ public class ARFF2BOWmain {
 		//train instances irakurri
 		ARFFreader reader1 = new ARFFreader(args[0]);
 		Instances dataT = reader1.readFile();
-		//int trainIndex = dataT.numInstances();
+		int trainIndex = dataT.numInstances();
 		
 		//dev instances irakurri
 		ARFFreader reader2 = new ARFFreader(args[1]);
 		Instances dataDev = reader2.readFile();
-		//int devIndex = dataDev.numInstances();
+		int devIndex = dataDev.numInstances();
 		
 		//test instances irakurri
 		ARFFreader reader3 = new ARFFreader(args[2]);
 		Instances dataTest = reader3.readFile();
-		//int testIndex = dataTest.numInstances();
+		int testIndex = dataTest.numInstances();
 		//data.setClassIndex(data.numAttributes()-1);
 		
 		//Instances mergedINST = Instances.mergeInstances(dataT, dataDev);
@@ -48,9 +48,10 @@ public class ARFF2BOWmain {
 		//manager.writeALLARFF(mainData);
 		//filtroa aplikatu
 		StringToWordVFilter st = new StringToWordVFilter(manager.getMainInstances());
+		
 		st.applyFilter();
 		//st.applyFilter(manager.getTrainNum(),manager.getDevNum(),manager.getTestNum());
-		
+		st.writeFiles(trainIndex, devIndex, testIndex);
 	}
 
 }

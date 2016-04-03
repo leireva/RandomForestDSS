@@ -64,10 +64,10 @@ public class StringToWordVFilter {
 		Instances train = getInst(0, tr);
 		writeTrainFile(train);
 		
-		Instances devI = getInst(tr,tr+dev);
+		Instances devI = getInst(tr,dev);
 		writeDevFile(devI);
 		
-		Instances testI = getInst(tr+dev, dev+test);
+		Instances testI = getInst(tr+dev, test);
 		writeTestFile(testI);
 	}
 	public void writeTrainFile(Instances filteredData){
@@ -126,10 +126,10 @@ public class StringToWordVFilter {
 	}
 
 	public Instances getInst(int indexB,int indexE){
-		Instances newData = null;
-		for(int i = indexB; i<indexE; i++){
+		Instances newData = new Instances(filteredData, indexB, indexE);
+		/*for(int i = indexB; i<indexE; i++){
 			newData.add(filteredData.instance(i));
-		}
+		}*/
 		return newData;
 	}
 	
