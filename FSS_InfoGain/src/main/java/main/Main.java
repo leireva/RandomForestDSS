@@ -17,7 +17,9 @@ public class Main {
 		}
 		ARFFreader reader = new ARFFreader(args[0]);
 		Instances data = reader.readFile();
-		data.setClassIndex(1);
+		
+		 
+		data.setClassIndex(0);
 		SelectAttributes select = new SelectAttributes(data);
 		select.apply();
 	}
