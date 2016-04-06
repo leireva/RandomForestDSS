@@ -14,7 +14,11 @@ public class ARFFreader {
 			path = pPath;
 			
 		}
-		
+		/*
+		* arff fitxategi bat irakurri egingo du metodo honek
+		*irakurritako fitxategian zeuden instantzia multzoak emano ditu erantzun bezala
+		*Azkenik fitxategia itxi egino du.
+		*/
 		public Instances readFile(){
 			//BufferedReader reader;
 			   // 1.2. Open the file
