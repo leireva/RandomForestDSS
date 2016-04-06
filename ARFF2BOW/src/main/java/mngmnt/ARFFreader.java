@@ -10,17 +10,25 @@ public class ARFFreader {
 
 	Instances data;
 	String path;
+	
+	/*
+	*Klasearen metodo eraikitzailea
+	* String bat behar du sarrera moduan, hau bihurtu nahi dugun fitxategiaren path-a izango da.
+	*/
 	public ARFFreader(String pPath){
 		path = pPath;
 		
 	}
-	
+	/*
+	 * readFile() eraikitzailean sartutako path-an dagoen fitxategia ireki egingo du
+	 * Bukaeran ffitxategian zeuden instanziak bueltatu gingo ditu.
+	*/
 	public Instances readFile(){
-		//BufferedReader reader;
+		
 		   // 1.2. Open the file
 	    FileReader fi=null;
 		try {
-			//fi= new FileReader("~/software/weka-3-6-9/data/breast-cancer.arff"); //(args[0]) <-> ("~/software/weka-3-6-9/data/breast-cancer.arff" )
+			
 			fi= new FileReader(path);
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: Revisar path del fichero de datos:"+path);
@@ -36,7 +44,7 @@ public class ARFFreader {
 		try {
 			fi.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 		}
 		return data;
 	}
