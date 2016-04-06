@@ -18,6 +18,10 @@ public class StringToWordVFilter {
 		stwv = new StringToWordVector();
 		data = pdata;
 	}
+
+	/*
+	*Filtroak erabiliko dituen opzioak ipintzen ditu.
+	*/
 	private void setOptions(){
 		//filtroak behar dituen ezaugarriak ezarri
 				stwv.setIDFTransform(false);
@@ -29,6 +33,9 @@ public class StringToWordVFilter {
 			
 	}
 
+	/*
+	*Aukeratutako filtroa erabiltzen du.
+	*/
 	public void applyFilter(){
 		setOptions();
 		//filtroa aplikatu
@@ -42,6 +49,10 @@ public class StringToWordVFilter {
 			//e.printStackTrace();
 		}
 	}
+
+	/*
+	*fitxategi berri bat sortzen du erabiltzailearen karpeta nagusian
+	*/
 	public void write(){
 		String user = System.getProperty("user.name");
 		BufferedWriter writer;
@@ -60,6 +71,12 @@ public class StringToWordVFilter {
 			e.printStackTrace();
 		}
 	}
+
+
+	/*
+	*Hasierako parametro moduan 3 int behar ditu, hauekin, jakin dezake nondik banatzen diren instantzia multzo bakoitza.
+	*Hau jakinda, instantzia multzoa, 3 multzotan banatu egingo ditu, sartutako int-en arabera.
+	*/	
 	public void writeFiles(int tr, int dev, int test){
 		Instances train = getInst(0, tr);
 		writeTrainFile(train);
@@ -69,6 +86,11 @@ public class StringToWordVFilter {
 		
 		Instances testI = getInst(tr+dev, test);
 		writeTestFile(testI);
+
+	/*
+	* Instantzia multzo bat behar du hasierako parametro moduan.
+	*entrenatzeko instantziak fitxategi batean gorde egingo ditu metodo honek.
+	*/
 	}
 	public void writeTrainFile(Instances filteredData){
 		String user = System.getProperty("user.name");
@@ -87,6 +109,11 @@ public class StringToWordVFilter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	/*
+	* Instantzia multzo bat behar du hasierako parametro moduan.
+	*Dev instantziak fitxategi batean gorde egingo ditu metodo honek.
+	*/
 	}
 	public void writeDevFile(Instances filteredData){
 		String user = System.getProperty("user.name");
@@ -106,6 +133,11 @@ public class StringToWordVFilter {
 			e.printStackTrace();
 		}
 	}
+
+	/*
+	* Instantzia multzo bat behar du hasierako parametro moduan.
+	*Test instantziak fitxategi batean gorde egingo ditu metodo honek.
+	*/
 	public void writeTestFile(Instances filteredData){
 		String user = System.getProperty("user.name");
 		BufferedWriter writer;
@@ -124,7 +156,11 @@ public class StringToWordVFilter {
 			e.printStackTrace();
 		}
 	}
-
+	/*
+	*Sartutako zenbakien dauden artean instantziak bueltatu egingo du metodo honek.
+	* Bi int behar ditu hasierako parametro moduan
+	*Instantzia multzo bat bueltatuko du.
+	*/
 	public Instances getInst(int indexB,int indexE){
 		Instances newData = new Instances(filteredData, indexB, indexE);
 		/*for(int i = indexB; i<indexE; i++){
@@ -133,5 +169,4 @@ public class StringToWordVFilter {
 		return newData;
 	}
 	
-	
-}
+}	
