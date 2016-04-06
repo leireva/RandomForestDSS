@@ -6,6 +6,10 @@ import weka.core.Instances;
 
 public class Main {
 
+	/*
+	 *arff fitxategi baten path-a behar du sarrera moduan 
+	 * arff fitxategiaren datuak, filtro batzuekin garbitu egingo ditu atributo erabilgarrienak izateko.
+	*/
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
