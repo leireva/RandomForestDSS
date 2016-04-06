@@ -21,6 +21,10 @@ public class SelectAttributes {
 		filter = new AttributeSelection();
 		data = pData;
 	}
+	
+	/*
+	*SelectAtributes filtroa data instantzia multzoan aplikatu egingo da.
+	*/
 	public void apply() throws Exception{
 		Ranker search = new Ranker();
 		/*
@@ -46,10 +50,20 @@ public class SelectAttributes {
 		// write();
 		
 	}
+	
+	/*
+	*Hasierako parametro moduan, String array bat behar du
+	*Emandako String hau, atributo garbiketa metodo bat pasatuko zaio.
+	*/
 	public void cleanAtss(String[]a){
 		CleanAttributes cA = new CleanAttributes(a);
 		cA.apply();
 	}
+	
+	/*
+	*Hasierako parametro bezala, instantzia multzo bat behar du.
+	*instanrtzia multzo hau, .arff fitxategi batean idatzi egingo da.
+	*/
 	public void write(Instances data){
 		String user = System.getProperty("user.name");
 		BufferedWriter writer;
@@ -68,10 +82,12 @@ public class SelectAttributes {
 			e.printStackTrace();
 		}
 	}
-/*
- * Sortutako atributu berriak String array batean gorde
- * dev eta test fitxategiak eredu berdina (atributu berdinak) izateko
- */
+	
+	/*
+ 	* Hasierako parametro bezala instantzia multzo bat behar du
+ 	* Metodo honek, instantzia multzoa hartuko du, eta bere atributo multzoak atera egino ditu.
+ 	*erantzun bezala, ateratako atributoak, string array batean bueltako ditu.
+	 */
 	public String[] getAttributes(Instances trainData){
 		String[] trainAtts = new String[trainData.numAttributes()];
 		for(int index = 0; index < trainData.numAttributes(); index++){
