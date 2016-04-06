@@ -15,6 +15,11 @@ public class CleanAttributes {
 	/*
 	 * Hartu devBOW.arff eta testBOW.arff atributuen "garbiketa" egiteko
 	 */
+	 
+	 /*
+	  *de eta test arff fitxategiak irakurri egingo ditu eta dev eta test atributoetan gordeko ditu. 
+	  *
+	 */
 	private void readFile(){
 		String user = System.getProperty("user.name");
 		ARFFreader reader = new ARFFreader("/home/"+user+"/devBOW.arff");
@@ -23,15 +28,29 @@ public class CleanAttributes {
 		reader = new ARFFreader("/home/"+user+"/testBOW.arff");
 		test = reader.readFile();
 	}
+	
+	/*
+	 * Hasierako parametro moduan, Hitz array bat behar du.
+	 *hauek, train fiitxategiaren atributoak izango dira.
+	*/
 	private void setStr(String[] trainAttributes){
 		attrNames = new String[trainAttributes.length];
 		for(int i = 0 ; i<trainAttributes.length ; i++){
 			attrNames[i] = trainAttributes[i];
 		}
 	}
+	
+	/* getAtssIndex() metodoa egingo da dev instantzia multzoan.
+	*
+	*/
 	public void apply(){
 		getAttsIndex(dev);
 	}
+	
+	/*
+	* Hasierako parametro moduan, instantzia multzo bat behar du.
+	*Metodo honek, atributo berrien indizeak egingo ditu.
+	*/
 	private void getAttsIndex(Instances data){
 		System.out.println("ATRIBUTU BERRIEN index -ak:");
 		Integer[]attributeIndexes = new Integer[attrNames.length];
