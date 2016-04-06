@@ -7,6 +7,11 @@ import weka.core.Instances;
 
 public class ARFF2BOWmain {
 
+	/*
+	*Metodo nagusia.
+	*Sarrera moduan, hiru arff fitxategien path-a behar du
+	*3 fitxategiak irakurtzen ditu,gero, instantzia multzoak multzo bakar batean gordetzen ditu, eta azkenik, fltroak aplikatzen dizkio.
+	*/
 	public static void main(String[] args) {
 		/**
 		 * Hiru fitxategien path -a behar da
