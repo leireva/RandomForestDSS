@@ -11,7 +11,10 @@ public class arffConverter {
 
 	public arffConverter(){}
 	
-	
+	/*
+	*csv dokumentoaren path-a behar du, metodo honek csv-tik .arff-era bihurtu egingo ditu.
+	* fitxategi bat sortu egingo da .arff dena.
+	*/
 public  void main(String path)throws Exception{
 		
 		//String helbidea;
