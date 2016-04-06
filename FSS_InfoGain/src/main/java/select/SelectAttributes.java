@@ -23,8 +23,12 @@ public class SelectAttributes {
 	}
 	public void apply() throws Exception{
 		Ranker search = new Ranker();
-		search.setNumToSelect(2);
-		search.setThreshold(0.04);
+		/*
+		 * Set the threshold higher if you want fewer
+			features to be chosen as the final set. 
+		 */
+		search.setNumToSelect(50);
+		search.setThreshold(0.5);
 		InfoGainAttributeEval eval = new InfoGainAttributeEval();
 		
 		ReplaceMissingValues replace = new ReplaceMissingValues();
@@ -35,10 +39,16 @@ public class SelectAttributes {
 		filter.setSearch(search);
 		filter.setInputFormat(filteredData);
 		Instances newData = Filter.useFilter(filteredData, filter);
+		cleanAtss(getAttributes(newData));
 		write(newData);
 		//applyAttributeSelection(pFilter);
 		//filter.SelectAttributes(filteredData);
 		// write();
+		
+	}
+	public void cleanAtss(String[]a){
+		CleanAttributes cA = new CleanAttributes(a);
+		cA.apply();
 	}
 	public void write(Instances data){
 		String user = System.getProperty("user.name");
@@ -58,5 +68,16 @@ public class SelectAttributes {
 			e.printStackTrace();
 		}
 	}
-
+/*
+ * Sortutako atributu berriak String array batean gorde
+ * dev eta test fitxategiak eredu berdina (atributu berdinak) izateko
+ */
+	public String[] getAttributes(Instances trainData){
+		String[] trainAtts = new String[trainData.numAttributes()];
+		for(int index = 0; index < trainData.numAttributes(); index++){
+			trainAtts[index] = trainData.attribute(index).name();
+			System.out.println(trainAtts[index]);
+		}return trainAtts;
+		
+	}
 }
