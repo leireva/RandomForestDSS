@@ -1,3 +1,4 @@
+
 package mngmnt;
 
 import java.io.BufferedWriter;
@@ -18,15 +19,29 @@ public class InstancesMNGMNT {
 		dataTst = tst;
 		mainInst = dataTrain;
 	}
+
+	/*
+	*int bat bueltatzen du, hau, train instantzia kopurua izango da.
+	*/
 	public int getTrainNum(){
 		return dataTrain.numInstances();
 	}
+	/*
+	*int bat bueltatzen du, hau, dev instantzia kopurua izango da.
+	*/
 	public int getDevNum(){
 		return dataDev.numInstances();
 	}
+	/*
+	*int bat bueltatzen du, hau, test instantzia kopurua izango da.
+	*/
 	public int getTestNum(){
 		return dataTst.numInstances();
 	}
+
+	/*
+	*metodo honek, 3 instantzia multzoak, batean batzen ditu.
+	*/
 	public void addToMainInstances(){
 		/*for(int i= 0; i<=getTrainNum(); i++){
 			mainInst.add(dataTrain.instance(i));
@@ -40,6 +55,10 @@ public class InstancesMNGMNT {
 		//return mainInst;
 		writeALLARFF();
 	}
+
+	/*
+	* Metodo honek, instantzia multzoa arff fitxategi batean gordeko ditu.
+	*/
 	public void writeALLARFF(){
 		String user = System.getProperty("user.name");
 		BufferedWriter writer;
@@ -58,8 +77,13 @@ public class InstancesMNGMNT {
 			e.printStackTrace();
 		}
 	}
+
+	/*
+	*get metodo honek instantzia multzoa bueltatzen du.
+	*/
 	public Instances getMainInstances(){
 		return mainInst;
 	}
 
 }
+
