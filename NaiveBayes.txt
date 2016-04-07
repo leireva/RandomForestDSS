@@ -1,0 +1,34 @@
+public void baseline(instances data){
+// Create model
+// erabli ahal dira -K -D edo -O
+/*-K esan nahi du: Use kernel density estimator rather than normal distribution for numeric atributes
+* -D esan nahi du: Use supervised discretization for numeric atributes
+* -O esan nahi du: Display old model format, when the are many classes.
+* Ez dakit zeinekin egin, beraz hirurekin.
+*/
+for(int i=0;i<3;i++){
+String[] options;
+if(i==0){
+options = {"-K"};}
+else if(i==1){
+options = {"-O"};}
+else{
+options = {"-D"};}
+
+NaiveBayes clasificator = new NaibeBayes();
+clasificator.setOptions(options);
+clasificator.setCrossValidate(true);
+clasificator.buildClassifier(data);
+
+// Use model
+Evaluation evaluation= new Evaluation(data);
+	//
+evaluation.crossValidateModel(clasificator, data, 10, new Random(1));
+
+//Komprobatu f-measure, baseline denez suposatzen dut, f-measure txarrena hartu behar dela.
+if (evaluation.fMeasure(data.classIndex())>fmeasure){
+	fmeasure=evaluation.fMeasure(data.classIndex());
+	String[] erantzuna = options;
+	}
+}
+ //return options}
